@@ -1,0 +1,18 @@
+version: '2'
+services:
+  nginx-hls:
+    container_name: nginx-hls
+    restart: always
+    image: nginx
+    ports:
+      - 1935:1935
+      - 80:80
+    environment:
+      - CONVERT_TOOL=True
+    volumes:
+      - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime
+      - ${PWD}/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ${PWD}/media:/opt/media
+      - ${PWD}/hls:/opt/hls
+      - ${PWD}/live:/opt/live
+      - ${PWD}/demo:/usr/local/nginx/html/demo

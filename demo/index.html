@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>演示：HTML5点播m3u8(hls)格式视频</title>
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/demo.css">
+<style>
+
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="row main">
+        <div class="col-md-12">
+            <h2 class="top_title" align="center">HTML5点播m3u8格式视频</h2>
+            <div class="container" style="width: 96%; margin: 30px auto">
+                <video id="video" controls loop="false" width="100%"></video>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="hls.js"></script>
+
+<script>
+    var video = document.getElementById('video');
+    var hls = new Hls();
+    hls.loadSource('http://10.250.199.9/hls/blockchain/blockchain.m3u8');
+    <!--hls.loadSource('https://cbaas.cesinstitute.com.cn/hls/blockchain/blockchain.m3u8');-->
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      video.play();
+    });
+</script>
+</body>
+</html>
